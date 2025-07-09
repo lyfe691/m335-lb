@@ -10,41 +10,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * RecyclerView adapter for displaying modules in a list.
- * Handles module data binding and click events.
+ * RecyclerView adapter for displaying modules in a list
+ * handles module data binding and click events.
  */
 public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleViewHolder> {
     
     private List<Module> modules;
     private OnModuleClickListener clickListener;
+    private OnModuleLongClickListener longClickListener;
     
     /**
-     * Interface for handling module item clicks.
+     * interface for handling module item clicks
      */
     public interface OnModuleClickListener {
         void onModuleClick(Module module);
     }
     
     /**
-     * Constructor initializing empty module list.
+     * interface for handling module item long clicks
+     */
+    public interface OnModuleLongClickListener {
+        void onModuleLongClick(Module module);
+    }
+    
+    /**
+     * constructor initializing empty module list
      */
     public ModuleAdapter() {
         this.modules = new ArrayList<>();
     }
     
     /**
-     * Sets the click listener for module items.
+     * sets the click listener for module items
      * 
-     * @param listener Listener to handle module clicks
+     * @param listener listener to handle module clicks
      */
     public void setOnModuleClickListener(OnModuleClickListener listener) {
         this.clickListener = listener;
     }
     
     /**
-     * Updates the module list and refreshes the display.
+     * sets the long click listener for module items.
      * 
-     * @param newModules New list of modules to display
+     * @param listener listener to handle module long clicks
+     */
+    public void setOnModuleLongClickListener(OnModuleLongClickListener listener) {
+        this.longClickListener = listener;
+    }
+    
+    /**
+     * updates the module list and refreshes the display.
+     * 
+     * @param newModules new list of modules
      */
     public void setModules(List<Module> newModules) {
         this.modules = newModules;
@@ -71,8 +88,8 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleView
     }
     
     /**
-     * ViewHolder class for module items.
-     * Handles data binding and click events for individual module cards.
+     * ViewHolder class for module items
+     * handles data binding and click events for individual module cads.
      */
     class ModuleViewHolder extends RecyclerView.ViewHolder {
         
@@ -94,12 +111,23 @@ public class ModuleAdapter extends RecyclerView.Adapter<ModuleAdapter.ModuleView
                     }
                 }
             });
+            
+            itemView.setOnLongClickListener(v -> {
+                if (longClickListener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        longClickListener.onModuleLongClick(modules.get(position));
+                        return true;
+                    }
+                }
+                return false;
+            });
         }
         
         /**
-         * Binds module data to the view elements.
+         * binds module data to the view elements.
          * 
-         * @param module Module to display
+         * @param module module to display
          */
         public void bind(Module module) {
             textViewModulNumber.setText(module.getModulnummer());

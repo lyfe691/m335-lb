@@ -1,8 +1,8 @@
 package ch.wiss.m335_lb;
 
 /**
- * Data model representing a module with its number, title and optional grades.
- * Handles validation and grade calculation according to business requirements.
+ * data model representing a module with its number, title and optional grades.
+ * handles validation and grade calculation according to business requirements.
  */
 public class Module {
     
@@ -13,16 +13,16 @@ public class Module {
     private Double note2;
     
     /**
-     * Default constructor for creating empty module instances.
+     * default constructor for creating empty module instances
      */
     public Module() {
     }
     
     /**
-     * Constructor for creating a new module with required fields.
+     *constructor for creating a new module with required fields.
      * 
-     * @param modulnummer The module number (minimum 4 characters)
-     * @param modultitel The module title (minimum 4 characters)
+     * @param modulnummer The module number (minimum 4 characters) E.G m335
+     * @param modultitel The module title (minimum 4 characters) E.G Mobile-Applikationen Realisieren
      */
     public Module(String modulnummer, String modultitel) {
         this.modulnummer = modulnummer;
@@ -30,7 +30,7 @@ public class Module {
     }
     
     /**
-     * Full constructor for creating module with all data.
+     *full constructor for creating module with all data.
      */
     public Module(Long id, String modulnummer, String modultitel, Double note1, Double note2) {
         this.id = id;
@@ -40,7 +40,7 @@ public class Module {
         this.note2 = note2;
     }
     
-    // Getters and Setters
+    // getters & setters
     public Long getId() {
         return id;
     }
@@ -82,9 +82,9 @@ public class Module {
     }
     
     /**
-     * Calculates the average grade if both grades are present.
+     * calc the average if both are present
      * 
-     * @return Average of note1 and note2, or null if incomplete
+     * @return average of note1 and note2, or null if incomplete
      */
     public Double getDurchschnittsnote() {
         if (hasCompleteGrades()) {
@@ -94,9 +94,9 @@ public class Module {
     }
     
     /**
-     * Validates that required fields meet minimum length requirements.
+     * validates that required fields meet minimum length requirements.
      * 
-     * @return true if modulnummer and modultitel have at least 4 characters
+     * @return true if modulnummer and modultitel have at least 4 chars
      */
     public boolean isValid() {
         return modulnummer != null && modulnummer.trim().length() >= 4 &&
@@ -104,7 +104,7 @@ public class Module {
     }
     
     /**
-     * Checks if both grades are present for calculating average.
+     * checks if both grades are present for calculating average
      * 
      * @return true if both note1 and note2 are not null
      */

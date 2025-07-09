@@ -50,7 +50,7 @@ public class AddEditModuleActivity extends AppCompatActivity {
     }
     
     /**
-     * Initializes all view references.
+     * init all view references
      */
     private void initializeViews() {
         textInputLayoutModulnummer = findViewById(R.id.textInputLayoutModulnummer);
@@ -69,7 +69,7 @@ public class AddEditModuleActivity extends AppCompatActivity {
     }
     
     /**
-     * Sets up toolbar with navigation.
+     * sets up toolbar with navigation.
      */
     private void setupToolbar() {
         setSupportActionBar(toolbar);
@@ -81,7 +81,7 @@ public class AddEditModuleActivity extends AppCompatActivity {
     }
     
     /**
-     * Sets up click listeners for buttons.
+     * sets up click listeners for buttons.
      */
     private void setupClickListeners() {
         buttonSave.setOnClickListener(v -> saveModule());
@@ -89,7 +89,7 @@ public class AddEditModuleActivity extends AppCompatActivity {
     }
     
     /**
-     * Checks if activity was opened for editing existing module.
+     * checks if activity was opened for editing existing module.
      */
     private void checkEditMode() {
         Long moduleId = getIntent().getLongExtra(MainActivity.EXTRA_MODULE_ID, -1);
@@ -104,7 +104,7 @@ public class AddEditModuleActivity extends AppCompatActivity {
     }
     
     /**
-     * Loads existing module data for editing.
+     * loads existing module data for editing.
      */
     private void loadModuleForEditing(Long moduleId) {
         List<Module> modules = moduleStorage.loadModules();
@@ -119,7 +119,7 @@ public class AddEditModuleActivity extends AppCompatActivity {
     }
     
     /**
-     * Populates form fields with current module data.
+     * populates form fields with current module data.
      */
     private void populateFields() {
         if (currentModule != null) {
@@ -136,7 +136,7 @@ public class AddEditModuleActivity extends AppCompatActivity {
     }
     
     /**
-     * Validates and saves the module.
+     * val and saves the module.
      */
     private void saveModule() {
         if (validateInput()) {
@@ -165,7 +165,7 @@ public class AddEditModuleActivity extends AppCompatActivity {
     }
     
     /**
-     * Validates all input fields according to business rules.
+     * val  all input fields according to business rules.
      * 
      * @return true if all inputs are valid
      */
@@ -173,21 +173,21 @@ public class AddEditModuleActivity extends AppCompatActivity {
         clearErrors();
         boolean isValid = true;
         
-        // Validate Modulnummer
+        // val Modulnummer
         String modulnummer = editTextModulnummer.getText().toString().trim();
         if (TextUtils.isEmpty(modulnummer) || modulnummer.length() < 4) {
             textInputLayoutModulnummer.setError("Modulnummer muss mindestens 4 Zeichen haben");
             isValid = false;
         }
         
-        // Validate Modultitel
+        // val Modultitel
         String modultitel = editTextModultitel.getText().toString().trim();
         if (TextUtils.isEmpty(modultitel) || modultitel.length() < 4) {
             textInputLayoutModultitel.setError("Modultitel muss mindestens 4 Zeichen haben");
             isValid = false;
         }
         
-        // Validate Note1 (optional but must be valid number if provided)
+        // val Note1 (optional but must be valid number if provided)
         String note1Text = editTextNote1.getText().toString().trim();
         if (!TextUtils.isEmpty(note1Text)) {
             try {
@@ -202,7 +202,7 @@ public class AddEditModuleActivity extends AppCompatActivity {
             }
         }
         
-        // Validate Note2 (optional but must be valid number if provided)
+        // val Note2 (optional but must be valid number if provided)
         String note2Text = editTextNote2.getText().toString().trim();
         if (!TextUtils.isEmpty(note2Text)) {
             try {
@@ -221,7 +221,7 @@ public class AddEditModuleActivity extends AppCompatActivity {
     }
     
     /**
-     * Clears all error messages from input fields.
+     * clears all error messages from input fields.
      */
     private void clearErrors() {
         textInputLayoutModulnummer.setError(null);
@@ -231,7 +231,7 @@ public class AddEditModuleActivity extends AppCompatActivity {
     }
     
     /**
-     * Creates Module object from current form input.
+     * creates Module object from current form input.
      * 
      * @return Module with form data
      */
@@ -245,13 +245,13 @@ public class AddEditModuleActivity extends AppCompatActivity {
         module.setModulnummer(editTextModulnummer.getText().toString().trim());
         module.setModultitel(editTextModultitel.getText().toString().trim());
         
-        // Parse notes if provided
+        // prse notes if provided
         String note1Text = editTextNote1.getText().toString().trim();
         if (!TextUtils.isEmpty(note1Text)) {
             try {
                 module.setNote1(Double.parseDouble(note1Text));
             } catch (NumberFormatException e) {
-                // Already validated, should not happen
+                // Already val, should not happen
             }
         }
         
@@ -260,7 +260,7 @@ public class AddEditModuleActivity extends AppCompatActivity {
             try {
                 module.setNote2(Double.parseDouble(note2Text));
             } catch (NumberFormatException e) {
-                // Already validated, should not happen
+                // Already val, should not happen
             }
         }
         

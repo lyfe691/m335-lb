@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Utility class for local storage of module data using SharedPreferences.
- * Handles serialization and persistence of module objects.
+ * utility class for local storage of module data using ***SharedPreferences*** as specified in the exam papers.
+ * handles serialization and persistence of module objects.
  */
 public class ModuleStorage {
     
@@ -21,7 +21,7 @@ public class ModuleStorage {
     private final SharedPreferences prefs;
     
     /**
-     * Constructor initializing SharedPreferences for the given context.
+     * constructor initializing SharedPreferences for the given context.
      * 
      * @param context Application context for accessing SharedPreferences
      */
@@ -30,7 +30,7 @@ public class ModuleStorage {
     }
     
     /**
-     * Saves a list of modules to local storage.
+     * saves a list of modules to local storage.
      * 
      * @param modules List of modules to save
      */
@@ -53,7 +53,7 @@ public class ModuleStorage {
     }
     
     /**
-     * Loads all modules from local storage.
+     * loads all modules from local storage.
      * 
      * @return List of stored modules, empty list if none found
      */
@@ -78,9 +78,9 @@ public class ModuleStorage {
     }
     
     /**
-     * Generates next unique ID for new modules.
+     * generates next unique id for new modules.
      * 
-     * @return Next available ID
+     * @return Next available id
      */
     public long getNextId() {
         long nextId = prefs.getLong(NEXT_ID_KEY, 1);
@@ -89,7 +89,7 @@ public class ModuleStorage {
     }
     
     /**
-     * Converts Module object to JSON representation.
+     * Converts Module object to json representation.
      */
     private JSONObject moduleToJson(Module module) throws JSONException {
         JSONObject json = new JSONObject();
@@ -108,7 +108,7 @@ public class ModuleStorage {
     }
     
     /**
-     * Converts JSON object back to Module instance.
+     * Converts jsonobject back to Module instance.
      */
     private Module jsonToModule(JSONObject json) throws JSONException {
         Module module = new Module();
